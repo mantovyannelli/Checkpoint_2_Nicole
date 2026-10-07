@@ -10,6 +10,7 @@ public class Playercontrol : MonoBehaviour
     [SerializeField] private Vector3 sensorSize;
     [SerializeField] private float jumptime;
     [SerializeField] private float localgravity;
+
     
 
     
@@ -23,6 +24,7 @@ public class Playercontrol : MonoBehaviour
     [SerializeField] private LayerMask layerGround;
     [SerializeField] private float speed;
 
+    bool coincollected;
 
     void Awake()
     {
@@ -117,9 +119,13 @@ public class Playercontrol : MonoBehaviour
         if (collision.tag == "coin")
         {
             Destroy(collision.gameObject, 0.5f);
+           coincollected = true;
         }
       
     }
-
     
+    public bool Coll()
+    {
+           return coincollected;
+    }
 }
