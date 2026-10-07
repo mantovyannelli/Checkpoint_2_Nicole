@@ -66,17 +66,31 @@ public class Playercontrol : MonoBehaviour
 
     void Jump()
     {
-
+        if(Input.GetButtonDown("Jump") && OnGround()==true)
+        {
+            currentjump = jumptime;
+        }
+        else if (Input.GetButton("Jump") && currentjump > 0)
+        {
+            currentjump -= Time.deltaTime;
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            currentjump = 0;
+        }
     }
 
     void OnJump()
     {
-
+        if (currentjump > 0)
+        {
+            rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+        }
     }
 
     public bool OnGround()
     {
-        return Physics2D.OverlapBox(sensorGround.position, sensorSize, 0, layerGround);
+        return Physics2D.OverlapBox(sensorGround.position, sensorSize, 0);
     }
 
     void OnDrawGizmos()
