@@ -36,11 +36,13 @@ public class Playercontrol : MonoBehaviour
     void Update()
     {
         Move();
+        Jump();
     }
 
     void FixedUpdate()
     {
         OnMove();
+        OnJump();
     }
 
     void Move()
@@ -60,5 +62,26 @@ public class Playercontrol : MonoBehaviour
     void OnMove()
     {
         rb.linearVelocity = new Vector2(direction.x, rb.linearVelocityY);
+    }
+
+    void Jump()
+    {
+
+    }
+
+    void OnJump()
+    {
+
+    }
+
+    public bool OnGround()
+    {
+        return Physics2D.OverlapBox(sensorGround.position, sensorSize, 0, layerGround);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(sensorGround.position, sensorSize);
     }
 }
