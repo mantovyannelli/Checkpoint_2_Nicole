@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Playercontrol : MonoBehaviour
@@ -9,6 +10,7 @@ public class Playercontrol : MonoBehaviour
     [SerializeField] private Vector3 sensorSize;
     [SerializeField] private float jumptime;
     [SerializeField] private float localgravity;
+    
 
     
 
@@ -26,6 +28,7 @@ public class Playercontrol : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+       
     }
     void Start()
     {
@@ -109,5 +112,14 @@ public class Playercontrol : MonoBehaviour
         return (int)rb.linearVelocityY;
     }
 
-   
+  void OnTriggerEnter2D (Collider2D collision)
+    {
+        if (collision.tag == "coin")
+        {
+            Destroy(collision.gameObject, 0.5f);
+        }
+      
+    }
+
+    
 }
