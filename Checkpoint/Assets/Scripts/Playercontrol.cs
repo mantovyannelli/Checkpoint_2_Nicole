@@ -10,6 +10,8 @@ public class Playercontrol : MonoBehaviour
     [SerializeField] private float jumptime;
     [SerializeField] private float localgravity;
 
+    
+
     private Vector2 direction;
     private float currentjump;
 
@@ -17,17 +19,46 @@ public class Playercontrol : MonoBehaviour
     private SpriteRenderer sr;
 
     [SerializeField] private LayerMask layerGround;
+    [SerializeField] private float speed;
 
 
-
- void Start()
+    void Awake()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+    }
+    void Start()
+    {
+        rb.gravityScale = localgravity;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        Move();
+    }
+
+    void FixedUpdate()
+    {
+        OnMove();
+    }
+
+    void Move()
+    {
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * speed;
+
+        if (direction.x > 0)
+        {
+            sr.flipX = false;
+        }
+        else if (direction.x < 0)
+        {
+            sr.flipX = true;
+        }
+    }
+
+    void OnMove()
+    {
+        rb.linearVelocity = new Vector2(direction.x, rb.linearVelocityY);
     }
 }
