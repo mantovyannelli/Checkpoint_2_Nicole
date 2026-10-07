@@ -16,8 +16,11 @@ public class Playeranimations : MonoBehaviour
     void Update()
     {
         animator.SetInteger("pmove", control.MoveValueX());
-        animator.SetInteger("pjump", control.JumpValue());
-        animator.SetInteger("pcurrent", control.FallValue());
+     
+        
+       animator.SetInteger("pjump", control.JumpValue());
         animator.SetBool("pground", control.OnGround());
+        
+        
     }
 }

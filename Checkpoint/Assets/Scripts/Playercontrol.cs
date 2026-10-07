@@ -109,8 +109,5 @@ public class Playercontrol : MonoBehaviour
         return (int)rb.linearVelocityY;
     }
 
-    public int FallValue()
-    {
-        return (int)currentjump;
-    }
+   
 }
