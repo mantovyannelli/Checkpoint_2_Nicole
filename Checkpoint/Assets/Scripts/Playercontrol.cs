@@ -98,4 +98,19 @@ public class Playercontrol : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawCube(sensorGround.position, sensorSize);
     }
+
+    public int MoveValueX()
+    {
+        return (int)direction.x;
+    }
+
+    public int JumpValue()
+    {
+        return (int)rb.linearVelocityY;
+    }
+
+    public int FallValue()
+    {
+        return (int)currentjump;
+    }
 }
